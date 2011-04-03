@@ -1,0 +1,31 @@
+1. Use cp sapling.cfg to the OpenLayers/build directory.
+2. cd OpenLayers/build, run ./buildUncompressed sapling
+3. Remove extra JS logic in the OpenLayers.js file.
+   Open OpenLayers.js and remove all references to singleFile:
+
+   Line 103:
+
+    <     singleFile: true
+
+   Line 129:
+
+    <     var singleFile = (typeof OpenLayers == "object" && OpenLayers.singleFile);
+
+    Line 147, change to:
+
+    <         _scriptName: (!singleFile) ? "lib/OpenLayers.js" : "OpenLayers.js",
+    ---
+    >         _scriptName: "OpenLayers.js",
+
+    Line 187, remove the whole area between braces:
+
+    <     if(!singleFile) {
+            < remove everything here >
+            ...
+    <     }
+
+4. Run the resulting OpenLayers.js through the closure compiler with SIMPLE_OPTIMIZATIONS.
+5. Add this comment to the top of OpenLayers.js:
+
+   /*License info: license.txt in this directory*/
+6. Copy OpenLayers.js, license.txt to sapling/utils/static/openlayers/
