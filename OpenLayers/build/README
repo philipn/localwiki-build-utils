@@ -1,4 +1,6 @@
-0. Apply http://trac.osgeo.org/openlayers/ticket/2492 this patch to OpenLayers.  Ugh.
+0.
+ a) Apply http://trac.osgeo.org/openlayers/ticket/2492 this patch to OpenLayers.  Ugh.
+ b) If not using OpenLayers >= 2.11, apply this patch to OpenLayers: http://trac.osgeo.org/openlayers/attachment/ticket/2670/2670.1-trunk.patch.  Once we switch to OpenLayers 2.11 this step can be removed.  See http://trac.osgeo.org/openlayers/ticket/2670 and http://trac.osgeo.org/openlayers/ticket/3395.
 1. Use cp sapling.cfg to the OpenLayers/build directory.
 2. cd OpenLayers/build, run ./buildUncompressed sapling
 3. Remove extra JS logic in the OpenLayers.js file.
