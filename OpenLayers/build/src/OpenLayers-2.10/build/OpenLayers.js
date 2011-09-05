@@ -100,7 +100,6 @@
  * full text of the license. */
 
 var OpenLayers = {
-    singleFile: true
 };
 
 
@@ -126,7 +125,6 @@ var OpenLayers = {
      * OpenLayers/SingleFile.js script is included before this one - as is the
      * case with single file builds.
      */
-    var singleFile = (typeof OpenLayers == "object" && OpenLayers.singleFile);
     
     /**
      * Cache for the script location returned from
@@ -144,7 +142,8 @@ var OpenLayers = {
          * Property: _scriptName
          * {String} Relative path of this script.
          */
-        _scriptName: (!singleFile) ? "lib/OpenLayers.js" : "OpenLayers.js",
+        _scriptName: "OpenLayers.js",
+
 
         /**
          * Function: _getScriptLocation
@@ -184,272 +183,7 @@ var OpenLayers = {
      * When we *are* part of a SFL build we do not dynamically include the 
      * OpenLayers library code as it will be appended at the end of this file.
       */
-    if(!singleFile) {
-        var jsfiles = new Array(
-            "OpenLayers/Util.js",
-            "OpenLayers/BaseTypes.js",
-            "OpenLayers/BaseTypes/Class.js",
-            "OpenLayers/BaseTypes/Bounds.js",
-            "OpenLayers/BaseTypes/Element.js",
-            "OpenLayers/BaseTypes/LonLat.js",
-            "OpenLayers/BaseTypes/Pixel.js",
-            "OpenLayers/BaseTypes/Size.js",
-            "OpenLayers/Console.js",
-            "OpenLayers/Tween.js",
-            "Rico/Corner.js",
-            "Rico/Color.js",
-            "OpenLayers/Ajax.js",
-            "OpenLayers/Events.js",
-            "OpenLayers/Request.js",
-            "OpenLayers/Request/XMLHttpRequest.js",
-            "OpenLayers/Projection.js",
-            "OpenLayers/Map.js",
-            "OpenLayers/Layer.js",
-            "OpenLayers/Icon.js",
-            "OpenLayers/Marker.js",
-            "OpenLayers/Marker/Box.js",
-            "OpenLayers/Popup.js",
-            "OpenLayers/Tile.js",
-            "OpenLayers/Tile/Image.js",
-            "OpenLayers/Tile/Image/IFrame.js",
-            "OpenLayers/Tile/WFS.js",
-            "OpenLayers/Layer/Image.js",
-            "OpenLayers/Layer/SphericalMercator.js",
-            "OpenLayers/Layer/EventPane.js",
-            "OpenLayers/Layer/FixedZoomLevels.js",
-            "OpenLayers/Layer/Google.js",
-            "OpenLayers/Layer/Google/v3.js",
-            "OpenLayers/Layer/VirtualEarth.js",
-            "OpenLayers/Layer/Yahoo.js",
-            "OpenLayers/Layer/HTTPRequest.js",
-            "OpenLayers/Layer/Grid.js",
-            "OpenLayers/Layer/MapGuide.js",
-            "OpenLayers/Layer/MapServer.js",
-            "OpenLayers/Layer/MapServer/Untiled.js",
-            "OpenLayers/Layer/KaMap.js",
-            "OpenLayers/Layer/KaMapCache.js",
-            "OpenLayers/Layer/MultiMap.js",
-            "OpenLayers/Layer/Markers.js",
-            "OpenLayers/Layer/Text.js",
-            "OpenLayers/Layer/WorldWind.js",
-            "OpenLayers/Layer/ArcGIS93Rest.js",
-            "OpenLayers/Layer/WMS.js",
-            "OpenLayers/Layer/WMS/Untiled.js",
-            "OpenLayers/Layer/WMS/Post.js",
-            "OpenLayers/Layer/WMTS.js",
-            "OpenLayers/Layer/ArcIMS.js",
-            "OpenLayers/Layer/GeoRSS.js",
-            "OpenLayers/Layer/Boxes.js",
-            "OpenLayers/Layer/XYZ.js",
-            "OpenLayers/Layer/TMS.js",
-            "OpenLayers/Layer/TileCache.js",
-            "OpenLayers/Layer/Zoomify.js",
-            "OpenLayers/Popup/Anchored.js",
-            "OpenLayers/Popup/AnchoredBubble.js",
-            "OpenLayers/Popup/Framed.js",
-            "OpenLayers/Popup/FramedCloud.js",
-            "OpenLayers/Feature.js",
-            "OpenLayers/Feature/Vector.js",
-            "OpenLayers/Feature/WFS.js",
-            "OpenLayers/Handler.js",
-            "OpenLayers/Handler/Click.js",
-            "OpenLayers/Handler/Hover.js",
-            "OpenLayers/Handler/Point.js",
-            "OpenLayers/Handler/Path.js",
-            "OpenLayers/Handler/Polygon.js",
-            "OpenLayers/Handler/Feature.js",
-            "OpenLayers/Handler/Drag.js",
-            "OpenLayers/Handler/RegularPolygon.js",
-            "OpenLayers/Handler/Box.js",
-            "OpenLayers/Handler/MouseWheel.js",
-            "OpenLayers/Handler/Keyboard.js",
-            "OpenLayers/Control.js",
-            "OpenLayers/Control/Attribution.js",
-            "OpenLayers/Control/Button.js",
-            "OpenLayers/Control/ZoomBox.js",
-            "OpenLayers/Control/ZoomToMaxExtent.js",
-            "OpenLayers/Control/DragPan.js",
-            "OpenLayers/Control/Navigation.js",
-            "OpenLayers/Control/MouseDefaults.js",
-            "OpenLayers/Control/MousePosition.js",
-            "OpenLayers/Control/OverviewMap.js",
-            "OpenLayers/Control/KeyboardDefaults.js",
-            "OpenLayers/Control/PanZoom.js",
-            "OpenLayers/Control/PanZoomBar.js",
-            "OpenLayers/Control/ArgParser.js",
-            "OpenLayers/Control/Permalink.js",
-            "OpenLayers/Control/Scale.js",
-            "OpenLayers/Control/ScaleLine.js",
-            "OpenLayers/Control/Snapping.js",
-            "OpenLayers/Control/Split.js",
-            "OpenLayers/Control/LayerSwitcher.js",
-            "OpenLayers/Control/DrawFeature.js",
-            "OpenLayers/Control/DragFeature.js",
-            "OpenLayers/Control/ModifyFeature.js",
-            "OpenLayers/Control/Panel.js",
-            "OpenLayers/Control/SelectFeature.js",
-            "OpenLayers/Control/NavigationHistory.js",
-            "OpenLayers/Control/Measure.js",
-            "OpenLayers/Control/WMSGetFeatureInfo.js",
-            "OpenLayers/Control/WMTSGetFeatureInfo.js",
-            "OpenLayers/Control/Graticule.js",
-            "OpenLayers/Control/TransformFeature.js",
-            "OpenLayers/Control/SLDSelect.js",
-            "OpenLayers/Geometry.js",
-            "OpenLayers/Geometry/Rectangle.js",
-            "OpenLayers/Geometry/Collection.js",
-            "OpenLayers/Geometry/Point.js",
-            "OpenLayers/Geometry/MultiPoint.js",
-            "OpenLayers/Geometry/Curve.js",
-            "OpenLayers/Geometry/LineString.js",
-            "OpenLayers/Geometry/LinearRing.js",        
-            "OpenLayers/Geometry/Polygon.js",
-            "OpenLayers/Geometry/MultiLineString.js",
-            "OpenLayers/Geometry/MultiPolygon.js",
-            "OpenLayers/Geometry/Surface.js",
-            "OpenLayers/Renderer.js",
-            "OpenLayers/Renderer/Elements.js",
-            "OpenLayers/Renderer/SVG.js",
-            "OpenLayers/Renderer/Canvas.js",
-            "OpenLayers/Renderer/VML.js",
-            "OpenLayers/Layer/Vector.js",
-            "OpenLayers/Layer/Vector/RootContainer.js",
-            "OpenLayers/Strategy.js",
-            "OpenLayers/Strategy/Filter.js",
-            "OpenLayers/Strategy/Fixed.js",
-            "OpenLayers/Strategy/Cluster.js",
-            "OpenLayers/Strategy/Paging.js",
-            "OpenLayers/Strategy/BBOX.js",
-            "OpenLayers/Strategy/Save.js",
-            "OpenLayers/Strategy/Refresh.js",
-            "OpenLayers/Filter.js",
-            "OpenLayers/Filter/FeatureId.js",
-            "OpenLayers/Filter/Logical.js",
-            "OpenLayers/Filter/Comparison.js",
-            "OpenLayers/Filter/Spatial.js",
-            "OpenLayers/Protocol.js",
-            "OpenLayers/Protocol/HTTP.js",
-            "OpenLayers/Protocol/SQL.js",
-            "OpenLayers/Protocol/SQL/Gears.js",
-            "OpenLayers/Protocol/WFS.js",
-            "OpenLayers/Protocol/WFS/v1.js",
-            "OpenLayers/Protocol/WFS/v1_0_0.js",
-            "OpenLayers/Protocol/WFS/v1_1_0.js",
-            "OpenLayers/Protocol/SOS.js",
-            "OpenLayers/Protocol/SOS/v1_0_0.js",
-            "OpenLayers/Layer/PointTrack.js",
-            "OpenLayers/Layer/GML.js",
-            "OpenLayers/Style.js",
-            "OpenLayers/Style2.js",
-            "OpenLayers/StyleMap.js",
-            "OpenLayers/Rule.js",
-            "OpenLayers/Format.js",
-            "OpenLayers/Format/XML.js",
-            "OpenLayers/Format/Context.js",
-            "OpenLayers/Format/ArcXML.js",
-            "OpenLayers/Format/ArcXML/Features.js",
-            "OpenLayers/Format/GML.js",
-            "OpenLayers/Format/GML/Base.js",
-            "OpenLayers/Format/GML/v2.js",
-            "OpenLayers/Format/GML/v3.js",
-            "OpenLayers/Format/Atom.js",
-            "OpenLayers/Format/KML.js",
-            "OpenLayers/Format/GeoRSS.js",
-            "OpenLayers/Format/WFS.js",
-            "OpenLayers/Format/WFSCapabilities.js",
-            "OpenLayers/Format/WFSCapabilities/v1.js",
-            "OpenLayers/Format/WFSCapabilities/v1_0_0.js",
-            "OpenLayers/Format/WFSCapabilities/v1_1_0.js",
-            "OpenLayers/Format/WFSDescribeFeatureType.js",
-            "OpenLayers/Format/WMSDescribeLayer.js",
-            "OpenLayers/Format/WMSDescribeLayer/v1_1.js",
-            "OpenLayers/Format/WKT.js",
-            "OpenLayers/Format/OSM.js",
-            "OpenLayers/Format/GPX.js",
-            "OpenLayers/Format/Filter.js",
-            "OpenLayers/Format/Filter/v1.js",
-            "OpenLayers/Format/Filter/v1_0_0.js",
-            "OpenLayers/Format/Filter/v1_1_0.js",
-            "OpenLayers/Format/SLD.js",
-            "OpenLayers/Format/SLD/v1.js",
-            "OpenLayers/Format/SLD/v1_0_0.js",
-            "OpenLayers/Format/OWSCommon/v1.js",
-            "OpenLayers/Format/OWSCommon/v1_0_0.js",
-            "OpenLayers/Format/OWSCommon/v1_1_0.js",
-            "OpenLayers/Format/CSWGetDomain.js",
-            "OpenLayers/Format/CSWGetDomain/v2_0_2.js",
-            "OpenLayers/Format/CSWGetRecords.js",
-            "OpenLayers/Format/CSWGetRecords/v2_0_2.js",
-            "OpenLayers/Format/WFST.js",
-            "OpenLayers/Format/WFST/v1.js",
-            "OpenLayers/Format/WFST/v1_0_0.js",
-            "OpenLayers/Format/WFST/v1_1_0.js",
-            "OpenLayers/Format/Text.js",
-            "OpenLayers/Format/JSON.js",
-            "OpenLayers/Format/GeoJSON.js",
-            "OpenLayers/Format/WMC.js",
-            "OpenLayers/Format/WMC/v1.js",
-            "OpenLayers/Format/WMC/v1_0_0.js",
-            "OpenLayers/Format/WMC/v1_1_0.js",
-            "OpenLayers/Format/WMSCapabilities.js",
-            "OpenLayers/Format/WMSCapabilities/v1.js",
-            "OpenLayers/Format/WMSCapabilities/v1_1.js",
-            "OpenLayers/Format/WMSCapabilities/v1_1_0.js",
-            "OpenLayers/Format/WMSCapabilities/v1_1_1.js",
-            "OpenLayers/Format/WMSCapabilities/v1_3.js",
-            "OpenLayers/Format/WMSCapabilities/v1_3_0.js",
-            "OpenLayers/Format/WMSGetFeatureInfo.js",
-            "OpenLayers/Format/SOSCapabilities.js",
-            "OpenLayers/Format/SOSCapabilities/v1_0_0.js",
-            "OpenLayers/Format/SOSGetObservation.js",
-            "OpenLayers/Format/SOSGetFeatureOfInterest.js",
-            "OpenLayers/Format/OWSContext.js",
-            "OpenLayers/Format/OWSContext/v0_3_1.js",
-            "OpenLayers/Format/WMTSCapabilities.js",
-            "OpenLayers/Format/WMTSCapabilities/v1_0_0.js",
-            "OpenLayers/Layer/WFS.js",
-            "OpenLayers/Control/GetFeature.js",
-            "OpenLayers/Control/MouseToolbar.js",
-            "OpenLayers/Control/NavToolbar.js",
-            "OpenLayers/Control/PanPanel.js",
-            "OpenLayers/Control/Pan.js",
-            "OpenLayers/Control/ZoomIn.js",
-            "OpenLayers/Control/ZoomOut.js",
-            "OpenLayers/Control/ZoomPanel.js",
-            "OpenLayers/Control/EditingToolbar.js",
-            "OpenLayers/Symbolizer.js",
-            "OpenLayers/Symbolizer/Point.js",
-            "OpenLayers/Symbolizer/Line.js",
-            "OpenLayers/Symbolizer/Polygon.js",
-            "OpenLayers/Symbolizer/Text.js",
-            "OpenLayers/Symbolizer/Raster.js",
-            "OpenLayers/Lang.js",
-            "OpenLayers/Lang/en.js"
-        ); // etc.
 
-        var agent = navigator.userAgent;
-        var docWrite = (agent.match("MSIE") || agent.match("Safari"));
-        if(docWrite) {
-            var allScriptTags = new Array(jsfiles.length);
-        }
-        var host = OpenLayers._getScriptLocation() + "lib/";    
-        for (var i=0, len=jsfiles.length; i<len; i++) {
-            if (docWrite) {
-                allScriptTags[i] = "<script src='" + host + jsfiles[i] +
-                                   "'></script>"; 
-            } else {
-                var s = document.createElement("script");
-                s.src = host + jsfiles[i];
-                var h = document.getElementsByTagName("head").length ? 
-                           document.getElementsByTagName("head")[0] : 
-                           document.body;
-                h.appendChild(s);
-            }
-        }
-        if (docWrite) {
-            document.write(allScriptTags.join(""));
-        }
-    }
 })();
 
 /**
@@ -26353,6 +26087,805 @@ OpenLayers.Format.WKT = OpenLayers.Class(OpenLayers.Format, {
 
     CLASS_NAME: "OpenLayers.Format.WKT" 
 });     
+/* ======================================================================
+    OpenLayers/Layer/Google.js
+   ====================================================================== */
+
+/* Copyright (c) 2006-2010 by OpenLayers Contributors (see authors.txt for 
+ * full list of contributors). Published under the Clear BSD license.  
+ * See http://svn.openlayers.org/trunk/openlayers/license.txt for the
+ * full text of the license. */
+
+
+/**
+ * @requires OpenLayers/Layer/SphericalMercator.js
+ * @requires OpenLayers/Layer/EventPane.js
+ * @requires OpenLayers/Layer/FixedZoomLevels.js
+ */
+
+/**
+ * Class: OpenLayers.Layer.Google
+ * 
+ * Inherits from:
+ *  - <OpenLayers.Layer.SphericalMercator>
+ *  - <OpenLayers.Layer.EventPane>
+ *  - <OpenLayers.Layer.FixedZoomLevels>
+ */
+OpenLayers.Layer.Google = OpenLayers.Class(
+    OpenLayers.Layer.EventPane, 
+    OpenLayers.Layer.FixedZoomLevels, {
+    
+    /** 
+     * Constant: MIN_ZOOM_LEVEL
+     * {Integer} 0 
+     */
+    MIN_ZOOM_LEVEL: 0,
+    
+    /** 
+     * Constant: MAX_ZOOM_LEVEL
+     * {Integer} 21
+     */
+    MAX_ZOOM_LEVEL: 21,
+
+    /** 
+     * Constant: RESOLUTIONS
+     * {Array(Float)} Hardcode these resolutions so that they are more closely
+     *                tied with the standard wms projection
+     */
+    RESOLUTIONS: [
+        1.40625, 
+        0.703125, 
+        0.3515625, 
+        0.17578125, 
+        0.087890625, 
+        0.0439453125,
+        0.02197265625, 
+        0.010986328125, 
+        0.0054931640625, 
+        0.00274658203125,
+        0.001373291015625, 
+        0.0006866455078125, 
+        0.00034332275390625,
+        0.000171661376953125, 
+        0.0000858306884765625, 
+        0.00004291534423828125,
+        0.00002145767211914062, 
+        0.00001072883605957031,
+        0.00000536441802978515, 
+        0.00000268220901489257,
+        0.0000013411045074462891,
+        0.00000067055225372314453
+    ],
+
+    /**
+     * APIProperty: type
+     * {GMapType}
+     */
+    type: null,
+
+    /**
+     * APIProperty: wrapDateLine
+     * {Boolean} Allow user to pan forever east/west.  Default is true.  
+     *     Setting this to false only restricts panning if 
+     *     <sphericalMercator> is true. 
+     */
+    wrapDateLine: true,
+
+    /**
+     * APIProperty: sphericalMercator
+     * {Boolean} Should the map act as a mercator-projected map? This will
+     *     cause all interactions with the map to be in the actual map 
+     *     projection, which allows support for vector drawing, overlaying 
+     *     other maps, etc. 
+     */
+    sphericalMercator: false, 
+    
+    /**
+     * Property: version
+     * {Number} The version of the Google Maps API
+     */
+    version: null,
+
+    /** 
+     * Constructor: OpenLayers.Layer.Google
+     * 
+     * Parameters:
+     * name - {String} A name for the layer.
+     * options - {Object} An optional object whose properties will be set
+     *     on the layer.
+     */
+    initialize: function(name, options) {
+        options = options || {};
+        if(!options.version) {
+            options.version = typeof GMap2 === "function" ? "2" : "3";
+        }
+        var mixin = OpenLayers.Layer.Google["v" +
+            options.version.replace(/\./g, "_")];
+        if (mixin) {
+            OpenLayers.Util.applyDefaults(options, mixin);
+        } else {
+            throw "Unsupported Google Maps API version: " + options.version;
+        }
+
+        OpenLayers.Util.applyDefaults(options, mixin.DEFAULTS);
+        if (options.maxExtent) {
+            options.maxExtent = options.maxExtent.clone();
+        }
+
+        OpenLayers.Layer.EventPane.prototype.initialize.apply(this,
+            [name, options]);
+        OpenLayers.Layer.FixedZoomLevels.prototype.initialize.apply(this, 
+            [name, options]);
+
+        if (this.sphericalMercator) {
+            OpenLayers.Util.extend(this, OpenLayers.Layer.SphericalMercator);
+            this.initMercatorParameters();
+        }    
+    },
+
+    /**
+     * Method: clone
+     * Create a clone of this layer
+     *
+     * Returns:
+     * {<OpenLayers.Layer.Google>} An exact clone of this layer
+     */
+    clone: function() {
+        /**
+         * This method isn't intended to be called by a subclass and it
+         * doesn't call the same method on the superclass.  We don't call
+         * the super's clone because we don't want properties that are set
+         * on this layer after initialize (i.e. this.mapObject etc.).
+         */
+        return new OpenLayers.Layer.Google(
+            this.name, this.getOptions()
+        );
+    },
+
+    /**
+     * APIMethod: setVisibility
+     * Set the visibility flag for the layer and hide/show & redraw 
+     *     accordingly. Fire event unless otherwise specified
+     * 
+     * Note that visibility is no longer simply whether or not the layer's
+     *     style.display is set to "block". Now we store a 'visibility' state 
+     *     property on the layer class, this allows us to remember whether or 
+     *     not we *desire* for a layer to be visible. In the case where the 
+     *     map's resolution is out of the layer's range, this desire may be 
+     *     subverted.
+     * 
+     * Parameters:
+     * visible - {Boolean} Display the layer (if in range)
+     */
+    setVisibility: function(visible) {
+        // sharing a map container, opacity has to be set per layer
+        var opacity = this.opacity == null ? 1 : this.opacity;
+        OpenLayers.Layer.EventPane.prototype.setVisibility.apply(this, arguments);
+        this.setOpacity(opacity);
+    },
+    
+    /** 
+     * APIMethod: display
+     * Hide or show the Layer
+     * 
+     * Parameters:
+     * display - {Boolean}
+     */
+    display: function(visible) {
+        if (!this._dragging) {
+            this.setGMapVisibility(visible);
+        }
+        OpenLayers.Layer.EventPane.prototype.display.apply(this, arguments);
+    },
+    
+    /**
+     * Method: moveTo
+     * 
+     * Parameters:
+     * bound - {<OpenLayers.Bounds>}
+     * zoomChanged - {Boolean} Tells when zoom has changed, as layers have to
+     *     do some init work in that case.
+     * dragging - {Boolean}
+     */
+    moveTo: function(bounds, zoomChanged, dragging) {
+        this._dragging = dragging;
+        OpenLayers.Layer.EventPane.prototype.moveTo.apply(this, arguments);
+        delete this._dragging;
+    },
+    
+    /**
+     * APIMethod: setOpacity
+     * Sets the opacity for the entire layer (all images)
+     * 
+     * Parameter:
+     * opacity - {Float}
+     */
+    setOpacity: function(opacity) {
+        if (opacity !== this.opacity) {
+            if (this.map != null) {
+                this.map.events.triggerEvent("changelayer", {
+                    layer: this,
+                    property: "opacity"
+                });
+            }
+            this.opacity = opacity;
+        }
+        // Though this layer's opacity may not change, we're sharing a container
+        // and need to update the opacity for the entire container.
+        if (this.getVisibility()) {
+            var container = this.getMapContainer();
+            OpenLayers.Util.modifyDOMElement(
+                container, null, null, null, null, null, null, opacity
+            );
+        }
+    },
+
+    /**
+     * APIMethod: destroy
+     * Clean up this layer.
+     */
+    destroy: function() {
+        /**
+         * We have to override this method because the event pane destroy
+         * deletes the mapObject reference before removing this layer from
+         * the map.
+         */
+        if (this.map) {
+            this.setGMapVisibility(false);
+            var cache = OpenLayers.Layer.Google.cache[this.map.id];
+            if (cache && cache.count <= 1) {
+                this.removeGMapElements();
+            }            
+        }
+        OpenLayers.Layer.EventPane.prototype.destroy.apply(this, arguments);
+    },
+    
+    /**
+     * Method: removeGMapElements
+     * Remove all elements added to the dom.  This should only be called if
+     * this is the last of the Google layers for the given map.
+     */
+    removeGMapElements: function() {
+        var cache = OpenLayers.Layer.Google.cache[this.map.id];
+        if (cache) {
+            // remove shared elements from dom
+            var container = this.mapObject && this.getMapContainer();                
+            if (container && container.parentNode) {
+                container.parentNode.removeChild(container);
+            }
+            var termsOfUse = cache.termsOfUse;
+            if (termsOfUse && termsOfUse.parentNode) {
+                termsOfUse.parentNode.removeChild(termsOfUse);
+            }
+            var poweredBy = cache.poweredBy;
+            if (poweredBy && poweredBy.parentNode) {
+                poweredBy.parentNode.removeChild(poweredBy);
+            }
+        }
+    },
+
+    /**
+     * APIMethod: removeMap
+     * On being removed from the map, also remove termsOfUse and poweredBy divs
+     * 
+     * Parameters:
+     * map - {<OpenLayers.Map>}
+     */
+    removeMap: function(map) {
+        // hide layer before removing
+        if (this.visibility && this.mapObject) {
+            this.setGMapVisibility(false);
+        }
+        // check to see if last Google layer in this map
+        var cache = OpenLayers.Layer.Google.cache[map.id];
+        if (cache) {
+            if (cache.count <= 1) {
+                this.removeGMapElements();
+                delete OpenLayers.Layer.Google.cache[map.id];
+            } else {
+                // decrement the layer count
+                --cache.count;
+            }
+        }
+        // remove references to gmap elements
+        delete this.termsOfUse;
+        delete this.poweredBy;
+        delete this.mapObject;
+        delete this.dragObject;
+        OpenLayers.Layer.EventPane.prototype.removeMap.apply(this, arguments);
+    },
+    
+  //
+  // TRANSLATION: MapObject Bounds <-> OpenLayers.Bounds
+  //
+
+    /**
+     * APIMethod: getOLBoundsFromMapObjectBounds
+     * 
+     * Parameters:
+     * moBounds - {Object}
+     * 
+     * Returns:
+     * {<OpenLayers.Bounds>} An <OpenLayers.Bounds>, translated from the 
+     *                       passed-in MapObject Bounds.
+     *                       Returns null if null value is passed in.
+     */
+    getOLBoundsFromMapObjectBounds: function(moBounds) {
+        var olBounds = null;
+        if (moBounds != null) {
+            var sw = moBounds.getSouthWest();
+            var ne = moBounds.getNorthEast();
+            if (this.sphericalMercator) {
+                sw = this.forwardMercator(sw.lng(), sw.lat());
+                ne = this.forwardMercator(ne.lng(), ne.lat());
+            } else {
+                sw = new OpenLayers.LonLat(sw.lng(), sw.lat()); 
+                ne = new OpenLayers.LonLat(ne.lng(), ne.lat()); 
+            }    
+            olBounds = new OpenLayers.Bounds(sw.lon, 
+                                             sw.lat, 
+                                             ne.lon, 
+                                             ne.lat );
+        }
+        return olBounds;
+    },
+
+    /** 
+     * APIMethod: getWarningHTML
+     * 
+     * Returns: 
+     * {String} String with information on why layer is broken, how to get
+     *          it working.
+     */
+    getWarningHTML:function() {
+        return OpenLayers.i18n("googleWarning");
+    },
+
+
+    /************************************
+     *                                  *
+     *   MapObject Interface Controls   *
+     *                                  *
+     ************************************/
+
+
+  // Get&Set Center, Zoom
+
+    /**
+     * APIMethod: getMapObjectCenter
+     * 
+     * Returns: 
+     * {Object} The mapObject's current center in Map Object format
+     */
+    getMapObjectCenter: function() {
+        return this.mapObject.getCenter();
+    },
+
+    /** 
+     * APIMethod: getMapObjectZoom
+     * 
+     * Returns:
+     * {Integer} The mapObject's current zoom, in Map Object format
+     */
+    getMapObjectZoom: function() {
+        return this.mapObject.getZoom();
+    },
+
+  
+    /************************************
+     *                                  *
+     *       MapObject Primitives       *
+     *                                  *
+     ************************************/
+
+
+  // LonLat
+    
+    /**
+     * APIMethod: getLongitudeFromMapObjectLonLat
+     * 
+     * Parameters:
+     * moLonLat - {Object} MapObject LonLat format
+     * 
+     * Returns:
+     * {Float} Longitude of the given MapObject LonLat
+     */
+    getLongitudeFromMapObjectLonLat: function(moLonLat) {
+        return this.sphericalMercator ? 
+          this.forwardMercator(moLonLat.lng(), moLonLat.lat()).lon :
+          moLonLat.lng();  
+    },
+
+    /**
+     * APIMethod: getLatitudeFromMapObjectLonLat
+     * 
+     * Parameters:
+     * moLonLat - {Object} MapObject LonLat format
+     * 
+     * Returns:
+     * {Float} Latitude of the given MapObject LonLat
+     */
+    getLatitudeFromMapObjectLonLat: function(moLonLat) {
+        var lat = this.sphericalMercator ? 
+          this.forwardMercator(moLonLat.lng(), moLonLat.lat()).lat :
+          moLonLat.lat(); 
+        return lat;  
+    },
+    
+  // Pixel
+    
+    /**
+     * APIMethod: getXFromMapObjectPixel
+     * 
+     * Parameters:
+     * moPixel - {Object} MapObject Pixel format
+     * 
+     * Returns:
+     * {Integer} X value of the MapObject Pixel
+     */
+    getXFromMapObjectPixel: function(moPixel) {
+        return moPixel.x;
+    },
+
+    /**
+     * APIMethod: getYFromMapObjectPixel
+     * 
+     * Parameters:
+     * moPixel - {Object} MapObject Pixel format
+     * 
+     * Returns:
+     * {Integer} Y value of the MapObject Pixel
+     */
+    getYFromMapObjectPixel: function(moPixel) {
+        return moPixel.y;
+    },
+    
+    CLASS_NAME: "OpenLayers.Layer.Google"
+});
+
+/**
+ * Property: OpenLayers.Layer.Google.cache
+ * {Object} Cache for elements that should only be created once per map.
+ */
+OpenLayers.Layer.Google.cache = {};
+
+
+/**
+ * Constant: OpenLayers.Layer.Google.v2
+ * 
+ * Mixin providing functionality specific to the Google Maps API v2.
+ */
+OpenLayers.Layer.Google.v2 = {
+    
+    /**
+     * Property: termsOfUse
+     * {DOMElement} Div for Google's copyright and terms of use link
+     */
+    termsOfUse: null, 
+
+    /**
+     * Property: poweredBy
+     * {DOMElement} Div for Google's powered by logo and link
+     */
+    poweredBy: null, 
+
+    /**
+     * Property: dragObject
+     * {GDraggableObject} Since 2.93, Google has exposed the ability to get
+     *     the maps GDraggableObject. We can now use this for smooth panning
+     */
+    dragObject: null, 
+    
+    /** 
+     * Method: loadMapObject
+     * Load the GMap and register appropriate event listeners. If we can't 
+     *     load GMap2, then display a warning message.
+     */
+    loadMapObject:function() {
+        if (!this.type) {
+            this.type = G_NORMAL_MAP;
+        }
+        var mapObject, termsOfUse, poweredBy;
+        var cache = OpenLayers.Layer.Google.cache[this.map.id];
+        if (cache) {
+            // there are already Google layers added to this map
+            mapObject = cache.mapObject;
+            termsOfUse = cache.termsOfUse;
+            poweredBy = cache.poweredBy;
+            // increment the layer count
+            ++cache.count;
+        } else {
+            // this is the first Google layer for this map
+
+            var container = this.map.viewPortDiv;
+            var div = document.createElement("div");
+            div.id = this.map.id + "_GMap2Container";
+            div.style.position = "absolute";
+            div.style.width = "100%";
+            div.style.height = "100%";
+            container.appendChild(div);
+
+            // create GMap and shuffle elements
+            try {
+                mapObject = new GMap2(div);
+                
+                // move the ToS and branding stuff up to the container div
+                termsOfUse = div.lastChild;
+                container.appendChild(termsOfUse);
+                termsOfUse.style.zIndex = "1100";
+                termsOfUse.style.right = "";
+                termsOfUse.style.bottom = "";
+                termsOfUse.className = "olLayerGoogleCopyright";
+
+                poweredBy = div.lastChild;
+                container.appendChild(poweredBy);
+                poweredBy.style.zIndex = "1100";
+                poweredBy.style.right = "";
+                poweredBy.style.bottom = "";
+                poweredBy.className = "olLayerGooglePoweredBy gmnoprint";
+                
+            } catch (e) {
+                throw(e);
+            }
+            // cache elements for use by any other google layers added to
+            // this same map
+            OpenLayers.Layer.Google.cache[this.map.id] = {
+                mapObject: mapObject,
+                termsOfUse: termsOfUse,
+                poweredBy: poweredBy,
+                count: 1
+            };
+        }
+
+        this.mapObject = mapObject;
+        this.termsOfUse = termsOfUse;
+        this.poweredBy = poweredBy;
+        
+        // ensure this layer type is one of the mapObject types
+        if (OpenLayers.Util.indexOf(this.mapObject.getMapTypes(),
+                                    this.type) === -1) {
+            this.mapObject.addMapType(this.type);
+        }
+
+        //since v 2.93 getDragObject is now available.
+        if(typeof mapObject.getDragObject == "function") {
+            this.dragObject = mapObject.getDragObject();
+        } else {
+            this.dragPanMapObject = null;
+        }
+        
+        if(this.isBaseLayer === false) {
+            this.setGMapVisibility(this.div.style.display !== "none");
+        }
+
+    },
+
+    /**
+     * APIMethod: onMapResize
+     */
+    onMapResize: function() {
+        // workaround for resizing of invisible or not yet fully loaded layers
+        // where GMap2.checkResize() does not work. We need to load the GMap
+        // for the old div size, then checkResize(), and then call
+        // layer.moveTo() to trigger GMap.setCenter() (which will finish
+        // the GMap initialization).
+        if(this.visibility && this.mapObject.isLoaded()) {
+            this.mapObject.checkResize();
+        } else {
+            if(!this._resized) {
+                var layer = this;
+                var handle = GEvent.addListener(this.mapObject, "load", function() {
+                    GEvent.removeListener(handle);
+                    delete layer._resized;
+                    layer.mapObject.checkResize();
+                    layer.moveTo(layer.map.getCenter(), layer.map.getZoom());
+                });
+            }
+            this._resized = true;
+        }
+    },
+
+    /**
+     * Method: setGMapVisibility
+     * Display the GMap container and associated elements.
+     * 
+     * Parameters:
+     * visible - {Boolean} Display the GMap elements.
+     */
+    setGMapVisibility: function(visible) {
+        var cache = OpenLayers.Layer.Google.cache[this.map.id];
+        if (cache) {
+            var container = this.mapObject.getContainer();
+            if (visible === true) {
+                this.mapObject.setMapType(this.type);
+                container.style.display = "";
+                this.termsOfUse.style.left = "";
+                this.termsOfUse.style.display = "";
+                this.poweredBy.style.display = "";            
+                cache.displayed = this.id;
+            } else {
+                if (cache.displayed === this.id) {
+                    delete cache.displayed;
+                }
+                if (!cache.displayed) {
+                    container.style.display = "none";
+                    this.termsOfUse.style.display = "none";
+                    // move ToU far to the left in addition to setting display
+                    // to "none", because at the end of the GMap2 load
+                    // sequence, display: none will be unset and ToU would be
+                    // visible after loading a map with a google layer that is
+                    // initially hidden. 
+                    this.termsOfUse.style.left = "-9999px";
+                    this.poweredBy.style.display = "none";
+                }
+            }
+        }
+    },
+    
+    /**
+     * Method: getMapContainer
+     * 
+     * Returns:
+     * {DOMElement} the GMap container's div
+     */
+    getMapContainer: function() {
+        return this.mapObject.getContainer();
+    },
+
+  //
+  // TRANSLATION: MapObject Bounds <-> OpenLayers.Bounds
+  //
+
+    /**
+     * APIMethod: getMapObjectBoundsFromOLBounds
+     * 
+     * Parameters:
+     * olBounds - {<OpenLayers.Bounds>}
+     * 
+     * Returns:
+     * {Object} A MapObject Bounds, translated from olBounds
+     *          Returns null if null value is passed in
+     */
+    getMapObjectBoundsFromOLBounds: function(olBounds) {
+        var moBounds = null;
+        if (olBounds != null) {
+            var sw = this.sphericalMercator ? 
+              this.inverseMercator(olBounds.bottom, olBounds.left) : 
+              new OpenLayers.LonLat(olBounds.bottom, olBounds.left);
+            var ne = this.sphericalMercator ? 
+              this.inverseMercator(olBounds.top, olBounds.right) : 
+              new OpenLayers.LonLat(olBounds.top, olBounds.right);
+            moBounds = new GLatLngBounds(new GLatLng(sw.lat, sw.lon),
+                                         new GLatLng(ne.lat, ne.lon));
+        }
+        return moBounds;
+    },
+
+
+    /************************************
+     *                                  *
+     *   MapObject Interface Controls   *
+     *                                  *
+     ************************************/
+
+
+  // Get&Set Center, Zoom
+
+    /** 
+     * APIMethod: setMapObjectCenter
+     * Set the mapObject to the specified center and zoom
+     * 
+     * Parameters:
+     * center - {Object} MapObject LonLat format
+     * zoom - {int} MapObject zoom format
+     */
+    setMapObjectCenter: function(center, zoom) {
+        this.mapObject.setCenter(center, zoom); 
+    },
+   
+    /**
+     * APIMethod: dragPanMapObject
+     * 
+     * Parameters:
+     * dX - {Integer}
+     * dY - {Integer}
+     */
+    dragPanMapObject: function(dX, dY) {
+        this.dragObject.moveBy(new GSize(-dX, dY));
+    },
+
+
+  // LonLat - Pixel Translation
+  
+    /**
+     * APIMethod: getMapObjectLonLatFromMapObjectPixel
+     * 
+     * Parameters:
+     * moPixel - {Object} MapObject Pixel format
+     * 
+     * Returns:
+     * {Object} MapObject LonLat translated from MapObject Pixel
+     */
+    getMapObjectLonLatFromMapObjectPixel: function(moPixel) {
+        return this.mapObject.fromContainerPixelToLatLng(moPixel);
+    },
+
+    /**
+     * APIMethod: getMapObjectPixelFromMapObjectLonLat
+     * 
+     * Parameters:
+     * moLonLat - {Object} MapObject LonLat format
+     * 
+     * Returns:
+     * {Object} MapObject Pixel transtlated from MapObject LonLat
+     */
+    getMapObjectPixelFromMapObjectLonLat: function(moLonLat) {
+        return this.mapObject.fromLatLngToContainerPixel(moLonLat);
+    },
+
+  
+  // Bounds
+  
+    /** 
+     * APIMethod: getMapObjectZoomFromMapObjectBounds
+     * 
+     * Parameters:
+     * moBounds - {Object} MapObject Bounds format
+     * 
+     * Returns:
+     * {Object} MapObject Zoom for specified MapObject Bounds
+     */
+    getMapObjectZoomFromMapObjectBounds: function(moBounds) {
+        return this.mapObject.getBoundsZoomLevel(moBounds);
+    },
+
+    /************************************
+     *                                  *
+     *       MapObject Primitives       *
+     *                                  *
+     ************************************/
+
+
+  // LonLat
+    
+    /**
+     * APIMethod: getMapObjectLonLatFromLonLat
+     * 
+     * Parameters:
+     * lon - {Float}
+     * lat - {Float}
+     * 
+     * Returns:
+     * {Object} MapObject LonLat built from lon and lat params
+     */
+    getMapObjectLonLatFromLonLat: function(lon, lat) {
+        var gLatLng;
+        if(this.sphericalMercator) {
+            var lonlat = this.inverseMercator(lon, lat);
+            gLatLng = new GLatLng(lonlat.lat, lonlat.lon);
+        } else {
+            gLatLng = new GLatLng(lat, lon);
+        }
+        return gLatLng;
+    },
+
+  // Pixel
+    
+    /**
+     * APIMethod: getMapObjectPixelFromXY
+     * 
+     * Parameters:
+     * x - {Integer}
+     * y - {Integer}
+     * 
+     * Returns:
+     * {Object} MapObject Pixel from x and y parameters
+     */
+    getMapObjectPixelFromXY: function(x, y) {
+        return new GPoint(x, y);
+    }
+    
+};
 /* ======================================================================
     OpenLayers/Layer/Grid.js
    ====================================================================== */
