@@ -293,7 +293,7 @@ OpenLayers.Geometry.LinearRing = OpenLayers.Class(
         var digs = 14;
         var px = approx(point.x, digs);
         var py = approx(point.y, digs);
-        function newGetX(y, x1, y1, x2, y2) {
+        function getX(y, x1, y1, x2, y2) {
             return (y-y2)*((x2-x1)/(y2-y1)) + x2;
         }
         var numSeg = this.components.length - 1;
