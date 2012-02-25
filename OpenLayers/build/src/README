@@ -1,10 +1,9 @@
 ------------------
-Note: our OpenLayers-2.10 contained here has the following patches already applied.
+Note: our OpenLayers-2.11 contained here has the following patches already applied.
 
 0.
  a) Apply http://trac.osgeo.org/openlayers/ticket/2492 this patch to OpenLayers.  Ugh.
  b) Apply http://trac.osgeo.org/openlayers/ticket/3518 this patch to OpenLayers.
- c) If not using OpenLayers >= 2.11, apply this patch to OpenLayers: http://trac.osgeo.org/openlayers/attachment/ticket/2670/2670.1-trunk.patch.  Once we switch to OpenLayers 2.11 this step can be removed.  See http://trac.osgeo.org/openlayers/ticket/2670 and http://trac.osgeo.org/openlayers/ticket/3395.
 ------------------
 
 1. Use cp sapling.cfg to the OpenLayers/build directory.
@@ -12,24 +11,23 @@ Note: our OpenLayers-2.10 contained here has the following patches already appli
 3. Remove extra JS logic in the OpenLayers.js file.
    Open OpenLayers.js and remove all references to singleFile:
 
-   Line 103:
+   Line 145:
 
     <     singleFile: true
 
-   Line 129:
+   Line 200:
 
     <     var singleFile = (typeof OpenLayers == "object" && OpenLayers.singleFile);
 
-    Line 147, change to:
+    Line 204, change to:
 
-    <         _scriptName: (!singleFile) ? "lib/OpenLayers.js" : "OpenLayers.js",
+    <          var scriptName = (!singleFile) ? "lib/OpenLayers.js" : "OpenLayers.js";
     ---
-    >         _scriptName: "OpenLayers.js",
+    >          var scriptName = "OpenLayers.js";
 
-    Line 187, remove the whole area between braces:
+    Line 268, remove the whole singleFile if statement:
 
     <     if(!singleFile) {
-            < remove everything here >
             ...
     <     }
 
