@@ -7,7 +7,7 @@ Note: our OpenLayers-2.11 contained here has the following patches already appli
 ------------------
 
 1. Use cp sapling.cfg to the OpenLayers/build directory.
-2. cd OpenLayers/build, run ./buildUncompressed sapling
+2. cd OpenLayers/build, run ./buildUncompressed.py sapling
 3. Remove extra JS logic in the OpenLayers.js file.
    Open OpenLayers.js and remove all references to singleFile:
 
