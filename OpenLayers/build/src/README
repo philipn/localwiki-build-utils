@@ -1,9 +1,8 @@
 ------------------
-Note: our OpenLayers-2.11 contained here has the following patches already applied.
+Note: our OpenLayers-2.12 contained here has the following already applied:
 
 0.
- a) Apply http://trac.osgeo.org/openlayers/ticket/2492 this patch to OpenLayers.  Ugh.
- b) Apply http://trac.osgeo.org/openlayers/ticket/3518 this patch to OpenLayers.
+ b) Copy VirtualEarth.js to OpenLayers/lib/Layer/
 ------------------
 
 1. Use cp sapling.cfg to the OpenLayers/build directory.
