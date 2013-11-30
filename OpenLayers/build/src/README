@@ -34,4 +34,4 @@ Note: our OpenLayers-2.12 contained here has the following already applied:
 5. Add this comment to the top of OpenLayers.js:
 
    /*License info: license.txt in this directory*/
-6. Copy OpenLayers.js, license.txt to sapling/utils/static/openlayers/
+6. Copy OpenLayers.js, license.txt to localwiki/localwiki/maps/static/openlayers/OpenLayers
